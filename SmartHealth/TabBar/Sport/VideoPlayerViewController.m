@@ -95,6 +95,7 @@
         frame = CGRectMake(0, 0, self.playerView.bounds.size.width, self.playerView.bounds.size.height );
     }
     self.player.playerView.frame = frame;
+    self.playerView.frame = frame;
     [self.player.playerView setNeedsLayout];
     [self.player.playerView layoutIfNeeded];
 }
