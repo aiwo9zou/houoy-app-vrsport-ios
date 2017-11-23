@@ -34,107 +34,36 @@ class SettingInfoViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func loadImageData(){
-        iconImageView.sd_setImage(with: URL(string: Constants.Photo_Base_Link + (personModel?.portraitPath)! ), placeholderImage: UIImage(named: "person_default_icon"))
-        
-//        let pk = UserDefaults.standard.string(forKey:Constants.Login_User_PK) ?? ""
-//        let parameters: Parameters = [
-//            Constants.Login_User_PK: pk
-//        ]
-//        let request = Alamofire.request(Constants.PersonPortrait,method: .get, parameters: parameters, encoding: URLEncoding.default,headers: ApiHelper.getDefaultHeader())
-//        self.view.isUserInteractionEnabled = false
-//        request.responseJSON { response in
-//            self.view.isUserInteractionEnabled = true
-//            switch response.result {
-//            case .success(let data):
-//                Utils.printMsg(msg:"JSON: \(data)")
-//                let dic = data as! NSDictionary
-//                let model = SHPersonPortraitModel(JSON: dic as! [String : Any])
-//                guard let theModel = model else {
-//                    return
-//                }
-//                if theModel.success {
-//                    guard let theData = theModel.resultData else {
-//                        return
-//                    }
-//                    self.iconImageView.image = UIImage(data: theData)
-//                } else {
-//                    self.view.makeToast("获取头像失败")
-//                }
-//            case .failure:
-//                self.view.makeToast("获取信息失败")
-//            }
-//        }
+        let link = Constants.Photo_Base_Link + (personModel?.portraitPath)! + "?time=" + String(Date().ticks)
+        iconImageView.sd_setImage(with: URL(string:link), placeholderImage: UIImage(named: "person_default_icon"))
     }
     
     func uploadImageData(){
-        let pk = UserDefaults.standard.string(forKey:Constants.Login_User_PK) ?? ""
-        let imageData = UIImageJPEGRepresentation(iconImageView.image!, 0.2) as Data?
-        //"data:image/jpeg;base64" +
-        let parameters: Parameters = [
-            Constants.Person_Person_Image: (imageData?.base64EncodedString(options: .lineLength64Characters))!,
-            Constants.Login_User_PK: pk
-        ]
-//        let header: HTTPHeaders = [
-//            //Constants.ContentType: "multipart/form-data",
-//            Constants.Accept: Constants.ContentTypeJson
-//        ]
- //       let link = Constants.PersonUpload+"?"+Constants.Login_User_PK+"="+pk
-//        Alamofire.upload(multipartFormData: { multipartFormData in
-//            multipartFormData.append(imageData!, withName: Constants.Person_Person_File)
-//            for (key, value) in parameters {
-//                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-//            }
-//
-//        }, to: link, method: .post, headers: header, encodingCompletion: { encodingResult in
-//            switch encodingResult {
-//            case .success(let upload, _, _):
-//                upload.responseJSON { response in
-//                    debugPrint(response)
-//                }
-//            case .failure(let encodingError):
-//                print(encodingError)
-//            }
-//        })
-        
-//        Alamofire.upload(
-//            multipartFormData: { multipartFormData in
-//                multipartFormData.append(imageData!, withName: Constants.Person_Person_File)
-//        },
-//            to: link,
-//            encodingCompletion: { encodingResult in
-//                switch encodingResult {
-//                case .success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        debugPrint(response)
-//                    }
-//                case .failure(let encodingError):
-//                    print(encodingError)
-//                }
-//        }
-//        )
-
-//
-//        let request = Alamofire.upload(imageData!, to: Constants.PersonUpload+"?"+Constants.Login_User_PK+"="+pk, method: .post, headers: header)
-//        request.responseJSON { (response) in
-//            debugPrint(response)
-//        }
-        
-      //  Alamofire.upload(imageData, to: "https://httpbin.org/post").responseJSON { response in
-      //      debugPrint(response)
-      //  }
-//
-        let request = Alamofire.request( Constants.PersonUpload,method: .post, parameters: parameters, encoding: URLEncoding.default,headers:ApiHelper.getDefaultHeader())
         self.view.isUserInteractionEnabled = false
+        let pk = UserDefaults.standard.string(forKey:Constants.Login_User_PK) ?? ""
+        let imageData = UIImageJPEGRepresentation(iconImageView.image!.ResizeUIImage(width: 80, height: 80), 0.5)
+        let strBase64 = imageData?.base64EncodedData(options: .lineLength64Characters)
+        let link = Constants.PersonUpload+"?"+Constants.Login_User_PK+"="+pk
+
+        let request = Alamofire.upload(strBase64!, to: link, method: .post, headers: ApiHelper.getDefaultHeader())
         request.responseJSON { response in
             self.view.isUserInteractionEnabled = true
             switch response.result {
             case .success(let data):
                 Utils.printMsg(msg:"JSON: \(data)")
                 let dic = data as! NSDictionary
-
-
+                let model = SHPersonPortraitModel(JSON: dic as! [String : Any])
+                guard let themodel = model else {
+                    self.view.makeToast("保存失败")
+                    return
+                }
+                if (themodel.success) {
+                    self.view.makeToast("保存成功")
+                } else {
+                    self.view.makeToast("保存失败")
+                }
             case .failure:
-                self.view.makeToast("获取信息失败")
+                self.view.makeToast("保存失败")
             }
         }
     }

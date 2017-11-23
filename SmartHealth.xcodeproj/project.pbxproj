@@ -61,6 +61,8 @@
 		7E35F3421F937E9D0008E688 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E35F3411F937E9D0008E688 /* CoreMotion.framework */; };
 		7E35F3441F937EA40008E688 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E35F3431F937EA40008E688 /* libz.tbd */; };
 		7E35F34B1F9380840008E688 /* wu.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 7E35F34A1F9380840008E688 /* wu.mp4 */; };
+		7E65BE861FC7004300ED33E6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65BE851FC7004300ED33E6 /* DateExtension.swift */; };
+		7E65BE881FC706FE00ED33E6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65BE871FC706FE00ED33E6 /* UIImageExtension.swift */; };
 		7E7A57721FC449A8007CCF5C /* SHSaveRecordDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A57711FC449A8007CCF5C /* SHSaveRecordDetailModel.swift */; };
 		7E7E75471FAEB1FF00FB3595 /* SHResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E75461FAEB1FF00FB3595 /* SHResetPasswordModel.swift */; };
 		7E97AB271FAD554C004E5E38 /* SHSplashPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AB261FAD554C004E5E38 /* SHSplashPageViewController.swift */; };
@@ -192,6 +194,8 @@
 		7E35F3411F937E9D0008E688 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		7E35F3431F937EA40008E688 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7E35F34A1F9380840008E688 /* wu.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wu.mp4; sourceTree = "<group>"; };
+		7E65BE851FC7004300ED33E6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		7E65BE871FC706FE00ED33E6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		7E7A57711FC449A8007CCF5C /* SHSaveRecordDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHSaveRecordDetailModel.swift; sourceTree = "<group>"; };
 		7E7E75461FAEB1FF00FB3595 /* SHResetPasswordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHResetPasswordModel.swift; sourceTree = "<group>"; };
 		7E97AB261FAD554C004E5E38 /* SHSplashPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHSplashPageViewController.swift; sourceTree = "<group>"; };
@@ -336,7 +340,9 @@
 		1D2D0CE61FA5EA92004ED20A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7E65BE851FC7004300ED33E6 /* DateExtension.swift */,
 				1D2D0CE71FA5EA9C004ED20A /* StringExtension.swift */,
+				7E65BE871FC706FE00ED33E6 /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -951,6 +957,7 @@
 				7ED32E4E1FC1293B00DE9E67 /* MASConstraint.m in Sources */,
 				7ED32E431FC1293B00DE9E67 /* NSArray+HCKBluetoothAdd.m in Sources */,
 				7E3152041FADD00900205959 /* SHSaveRecordModel.swift in Sources */,
+				7E65BE881FC706FE00ED33E6 /* UIImageExtension.swift in Sources */,
 				1D3E9F321F36A9A2006CDD87 /* DetailViewController.swift in Sources */,
 				1D2D0CD81FA5868A004ED20A /* SportPlaceCell.swift in Sources */,
 				7EF6088A1FA8BB9400C33DFF /* SHPersoninfoModel.swift in Sources */,
@@ -1021,6 +1028,7 @@
 				7ED32DF51FC0470400DE9E67 /* SHURLSessionDownloadTask.swift in Sources */,
 				7EB33AEE1FC2F71800CE5431 /* SHHeartRateDataModel.swift in Sources */,
 				7EF608881FA8B21200C33DFF /* SHRegisterModel.swift in Sources */,
+				7E65BE861FC7004300ED33E6 /* DateExtension.swift in Sources */,
 				7EF6087A1FA7619F00C33DFF /* AttentionViewController.swift in Sources */,
 				7EF608821FA7D3BF00C33DFF /* SHLikeAttentionInfoModel.swift in Sources */,
 				7ED32E541FC1293B00DE9E67 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,

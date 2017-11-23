@@ -31,7 +31,7 @@ class SportListViewController: CommanViewController, UITableViewDelegate, UITabl
         let barButtonItem = UIBarButtonItem(customView: rightButton!)
         self.navigationItem.rightBarButtonItem = barButtonItem
         tableView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(MessageViewController.refresh(sender:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(SportListViewController.refresh(sender:)), for: .valueChanged)
         self.loadData(folderModel: self.folderModel)
     }
     

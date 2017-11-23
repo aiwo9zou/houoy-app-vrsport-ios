@@ -26,7 +26,6 @@ class MyPageViewController: CommanViewController, UITableViewDelegate, UITableVi
 //        bgImage.image = UIImage(named: "item_default")
 //        photoImage.image = UIImage(named: "item_default")
         self.settingBtn .setImage(UIImage.init(named: "settinginfos"), for: .highlighted)
-        self.loadData()
     }
     
     func loadData(){
@@ -53,7 +52,8 @@ class MyPageViewController: CommanViewController, UITableViewDelegate, UITableVi
                 guard let thePersonInfoModel = personInfoModel else {
                     return
                 }
-                self.photoImage.sd_setImage(with: URL(string: Constants.Photo_Base_Link + (thePersonInfoModel.portraitPath)! ), placeholderImage: UIImage(named: "person_default_icon"))
+                let link = Constants.Photo_Base_Link + (thePersonInfoModel.portraitPath)! + "?time=" + String(Date().ticks)
+                self.photoImage.sd_setImage(with: URL(string: link), placeholderImage: UIImage(named: "person_default_icon"))
                 
                 self.personModel = thePersonInfoModel
                 self.nameLabel.text = thePersonInfoModel.person_name
@@ -71,6 +71,7 @@ class MyPageViewController: CommanViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.loadData()
         self.navigationController?.isNavigationBarHidden = true
     }
 
